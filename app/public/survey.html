@@ -43,7 +43,6 @@
 
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">×</button>
           <h2 class="modal-title"><strong>You have a match!</strong></h2>
         </div>
         <div class="modal-body">
@@ -106,7 +105,7 @@
     $("#submit").on("click", function (event) {
       event.preventDefault();
 
-      /*function validateForm() {
+      function validateForm() {
         var isValid = true;
         $(".form-val").each(function () {
           if ($(this).val() === "") {
@@ -138,18 +137,11 @@
             $("#q9").text().charAt(0),
             $("#q10").text().charAt(0)
           ]
-        };*/
-
-        if (true) {
-          var userData = {
-            name: 'g',
-            scores: ['2', '1', '5', '4', '2', '4', '4', '4', '5', '1']
-          }
-        
+        };
 
         $.post("/api/friends", userData, function (data) {
           $("#match-name").text(data.name);
-          $("#match-img").attr("src", "/img/scorpion.png");
+          $("#match-img").attr("src", "/img/" + data.photo);
           $("#results-modal").modal("toggle");
 
         });

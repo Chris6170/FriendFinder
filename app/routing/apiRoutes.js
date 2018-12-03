@@ -10,7 +10,6 @@ module.exports = function (app) {
     app.post("/api/friends", function (req, res) {
         var userData = req.body;
         var userScores = userData.scores;
-        console.log(userScores)
 
         var leastDiff = 1000;
         var bestMatchIndex = -1;
