@@ -1,35 +1,35 @@
-var fs = require('fs');
-var path = require("path");
+var friendsList = require("../data/friends.js");
 
 module.exports = function (app) {
-    var obj; 
+    var obj;
 
     app.get("/api/friends", function (req, res) {
-        fs.readFile(path.join(__dirname, "../data/friends.js"), 'utf8', function (err, data) {
-            if (err) throw err;
-            obj = JSON.parse(data);
-        });
-        return res.json(obj);
+        return res.json(friendsList);
     });
 
     app.post("/api/friends", function (req, res) {
-        console.log(req)
-        // req.body hosts is equal to the JSON post sent from the user
-        // This works because of our body-parser middleware
-       // var newFriend = req.body;
+        var userData = req.body;
+        var userScores = userData.scores;
+        console.log(userScores)
 
+        var leastDiff = 1000;
+        var bestMatchIndex = -1;
+
+        for (var f = 0; f < friendsList.length; f++) {
+            var fscores = friendsList[f].scores
+
+            var currentDiffFriendLevel = 0;
+            for (var i = 0; i < userScores.length; i++) {
+                var currentDiffQuestionLevel = Math.abs(userScores[i] - fscores[i])
+                currentDiffFriendLevel = currentDiffFriendLevel + currentDiffQuestionLevel
+            }
+
+            if (currentDiffFriendLevel < leastDiff) {
+                leastDiff = currentDiffFriendLevel;
+                bestMatchIndex = f;
+            }
+        }
+
+        res.json(friendsList[bestMatchIndex]);
     });
-
-    /*
-            // Using a RegEx Pattern to remove spaces from newCharacter
-            // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-            newcharacter.routeName = newcharacter.name.replace(/\s+/g, "").toLowerCase();
-          
-            console.log(newcharacter);
-          
-            characters.push(newcharacter);
-          
-            res.json(newcharacter);
-          });
-    */
 }

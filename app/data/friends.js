@@ -1,4 +1,4 @@
-[
+var friendsList = [
     {
         "name": "Scorpion",
         "photo": "scorpion.png",
@@ -96,3 +96,5 @@
         ]
     }
 ]
+
+module.exports = friendsList;

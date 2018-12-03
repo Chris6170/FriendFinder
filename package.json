@@ -4,8 +4,9 @@
   "main": "server.js",
   "dependencies": {
     "body-parser": "^1.15.0",
+    "express": "^4.13.4",
     "path": "",
-    "express": "^4.13.4"
+    "static": "^2.0.0"
   },
   "devDependencies": {},
   "scripts": {
