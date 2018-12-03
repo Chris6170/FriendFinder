@@ -1,9 +1,5 @@
 var fs = require('fs');
 var path = require("path");
-var bodyParser = require("body-parser");
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 
 module.exports = function (app) {
     var obj; 
@@ -17,9 +13,10 @@ module.exports = function (app) {
     });
 
     app.post("/api/friends", function (req, res) {
+        console.log(req)
         // req.body hosts is equal to the JSON post sent from the user
         // This works because of our body-parser middleware
-        var newFriend = req.body;
+       // var newFriend = req.body;
 
     });
 

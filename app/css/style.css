@@ -1,0 +1,17 @@
+/* 585858 is faded grey font color
+   979797 highlighted color
+   e1e1e1 is white font color
+   17181B is background color - can use to make text invisible 
+*/
+
+html, body {
+    height: 100%;
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    background-color: #17181B;
+  
+  }
+  
+  #container {
+    min-height: 100%;
+  }
